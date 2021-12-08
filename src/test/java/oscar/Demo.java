@@ -4,6 +4,7 @@ package oscar;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class Demo {
 	
@@ -38,7 +39,46 @@ public static void main(String[] args) throws InterruptedException {
 		driver.findElement(By.id("submit")).click();
 		
 		Thread.sleep(3000);
-		//close the browser
+		
+		url = "https://demo.guru99.com/test/newtours/";
+		
+		driver.get(url);
+		
+		driver.findElement(By.linkText("REGISTER")).click();
+		
+		String expectedTitle = "Register: Mercury Tours";
+		
+		String actualTitle = driver.getTitle();
+		
+		if(actualTitle.equalsIgnoreCase(expectedTitle)){
+			
+		driver.findElement(By.name("firstName")).sendKeys("Oscar");
+		
+		driver.findElement(By.name("lastName")).sendKeys("Sanchez");
+		
+		driver.findElement(By.name("phone")).sendKeys("+504 97903667");
+		
+		driver.findElement(By.name("address1")).sendKeys("Residencial Casa Maya 2");
+		
+		driver.findElement(By.name("city")).sendKeys("San Pedro Sula");
+		
+		driver.findElement(By.name("postalCode")).sendKeys("21102");
+		
+		Select drpCountry = new Select(driver.findElement(By.name("country")));
+		
+		drpCountry.selectByVisibleText("HONDURAS");
+		
+		driver.findElement(By.id("email")).sendKeys("oscsnz");
+		
+		driver.findElement(By.name("password")).sendKeys("mateo2017");
+		
+		driver.findElement(By.name("confirmPassword")).sendKeys("mateo2017");
+		
+		driver.findElement(By.name("submit")).click();
+		}
+		
+		Thread.sleep(4000);
+		
 		driver.quit();
 	}	
 }
