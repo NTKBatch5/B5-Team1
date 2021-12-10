@@ -8,6 +8,8 @@ public class Demo1 {
 
 	public static void main(String[] args) throws InterruptedException {
 		String url ="http://demo.guru99.com/test/newtours/";
+		   String expectedTitle = "Register: Mercury Tours ENGLAND";
+	       String expectedConfirText = "Thank you for registering";
 	     
 	       System.setProperty("webdriver.chrome.driver",
 					"C:\\Users\\vdaya\\OneDrive\\Desktop\\Selenium\\chromedriver.exe");
@@ -23,7 +25,17 @@ public class Demo1 {
 		driver.findElement(By.linkText("REGISTER")).click();
 		
 		//4. Verify the page title is “Register: Mercury Tours”
+		String actualTitle  = driver.getTitle();
 		
+		System.out.println("EXP: " + expectedTitle);
+		System.out.println("ACT: " + actualTitle);
+		
+		if( actualTitle.equals(expectedTitle)) {
+			System.out.println("TITLE VERIFICATION PASSED");
+		} else {
+			System.out.println("TITLE VERIFICATION FAILED");
+		}
+			
 		
 		driver.findElement(By.name("firstName")).sendKeys("Dayagna");
 		driver.findElement(By.name("lastName")).sendKeys("Venzant");
@@ -42,6 +54,16 @@ public class Demo1 {
 		//contains “Thank you for registering.” phrases. 
 		//a. If it does then print “The testcase passed” otherwise “The testcase failed”
 		
+		String actualConfirText = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[2]/font")).getText();
+		
+		System.out.println("EXP: " + expectedConfirText);
+		System.out.println("ACT: " + actualConfirText);
+		
+		if(actualConfirText.contains(expectedConfirText)) {
+		System.out.println("Test Case PASSED");
+		} else {
+			System.out.println("Test Case FAILED");
+		}
 		
 		Thread.sleep(5000);
 		driver.quit();
@@ -76,3 +98,4 @@ public class Demo1 {
 	}
 
 }
+
