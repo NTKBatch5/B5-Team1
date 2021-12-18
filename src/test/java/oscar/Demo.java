@@ -50,7 +50,13 @@ public static void main(String[] args) throws InterruptedException {
 		
 		String actualTitle = driver.getTitle();
 		
+		
+		
 		if(actualTitle.equalsIgnoreCase(expectedTitle)){
+			System.out.println("Test Case Passed, Title expected matches Actual title");
+		}else {
+			System.out.println("Test Case Failed, Title expected does not match actual title");
+		}
 			
 		driver.findElement(By.name("firstName")).sendKeys("Oscar");
 		
@@ -75,6 +81,15 @@ public static void main(String[] args) throws InterruptedException {
 		driver.findElement(By.name("confirmPassword")).sendKeys("mateo2017");
 		
 		driver.findElement(By.name("submit")).click();
+		
+		String expectedConfirmText = "Thank you for registering";
+		
+		String actualConfirmText = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[3]/td/p[2]/font")).getText();
+		
+		if(actualConfirmText.contains(expectedConfirmText)) {
+			System.out.println("Test Case Passed, Confirmation text matches with expected result");
+		}else {
+			System.out.println("Test Case Failed, Confirmation text ");
 		}
 		
 		Thread.sleep(4000);
